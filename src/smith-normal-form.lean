@@ -506,9 +506,6 @@ begin
   simp [matrix.mul_assoc, matrix.mul_nonsing_inv B ((matrix.is_unit_iff_is_unit_det B).1 h')]
 end
 
-
-
-
 -- __1__ Assume B 0 0 does divide all elements in row 1 or column 1, then can make them all into zero's __For Loop Implementation__
 
 
@@ -528,23 +525,13 @@ end
 -- __4__ 
 lemma temp2 {R : Type*} [euclidean_domain R] [decidable_eq R] {n : ℕ} (hn : n > 0) (A : matrix (fin n) (fin n) R) (B : matrix (fin n) (fin n) R) (hB : snf B) (hA : matrix_equiv_rel.r R n n A B) {a : R} : ∃ (C : matrix (fin (n + 1)) (fin (n + 1)) R), matrix_equiv_rel.r R (n + 1) (n + 1) (simple_block_diag a A) C ∧ snf C := sorry
 
-
 -- Show that any zero matrix is in smith normal form
-
 -- show that any non-zero 1x1 matrix is in smith normal form
 
 
 
--- ## Main Result
-
-
-
--- __5__ Achieve result by induction
-
-
 
 /-
-
 __Miscellaneous Defintions of SNF not currently implemented__
 
 def smith_norm_form {n : ℕ} {D : Type*} [euclidean_domain D] (A : matrix (fin n) (fin n) D) : Prop :=
