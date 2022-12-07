@@ -1,13 +1,3 @@
-/-
-Based on Jacobson Book Theorem 3.8
--/
-
-
-
-
--- TODO: replace some defintions with structures??
-
-
 import tactic
 import data.matrix.basic
 import data.matrix.block
@@ -25,23 +15,20 @@ open_locale big_operators
 Currently, whole framework is for a Eucldiean Domains (some results could be weakened to PID or even weaker), and later lemmas have been restriced to nxn matrices rather than nxm
 -/
 
-
-
 -- # Elementary Matrices
 /-
 Defines the basis matrix, all zero's except for a 1 in the (i, j)'th entry and three elementary matrices
 Left multiplication acts on rows, right multiplication acts on columns, but the effect of the elementary matrices is expressed as lemmas later
 
-* `add_mult n i j a` - adds `a` times row/column `i` to row/column `j`
-* `mul_by_unit n i u` - multiplies row/column `i` by `u`
-* 
+* `add_mult n i j a` - is the matrix that (via multiplication) induces the map which adds `a` times row/column `i` to row/column `j`
+* `mul_by_unit n i u` - induces a similar map which multiplies row/column `i` by `u`
 -/
 
 -- ## Definiton of the Elementary Matrices
 
 namespace elem_matrix
 
--- Basis Δ
+-- Basis Δ (as called in Jacobson)
 def basis (R : Type*) [euclidean_domain R] (n : ℕ) (i j : fin n) : matrix (fin n) (fin n) R :=
 (λ i' j', if i = i' ∧ j = j' then 1 else 0)
 
@@ -277,16 +264,6 @@ begin
 end
 
 end matrix_equiv_rel
-
-
-
-
-
-
-
-
-
-
 
 
 -- # Smith Normal Form
@@ -536,8 +513,6 @@ end
 
 
 -- __2__ We will always be in one of the above cases, if first one, there will be finitely many steps to second case (using well founded tactics, see extended EA and gcd processes proof) By The Equation Compiler and __Using_Well_Founded__
--- https://leanprover.github.io/theorem_proving_in_lean/induction_and_recursion.html#well-founded-recursion-and-induction
--- https://leanprover-community.github.io/extras/well_founded_recursion.html
 
 
 -- inductive steps between n and (n + 1)
