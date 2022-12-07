@@ -208,17 +208,6 @@ end elem_matrix
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 -- # Equivalence of m x n matrices
 /-
 Basic Framework for the equivalence of matrices, that this is an equivalence relation and that left and right multiplication by invertable (`is_unit`) matrices preserves equivalence
@@ -269,9 +258,12 @@ end
 theorem r_equiv {R : Type*} [euclidean_domain R] {m n : ℕ} : equivalence (r R m n) := ⟨r_refl, r_symm, r_trans⟩
 
 
+
+
 -- ## Basic Equivalence Lemmas
 
 -- left and right multiplication by invertible matrix preserves equivalence (in particular the elementary matrices)
+
 lemma unit_mul {R : Type*} [euclidean_domain R] {m n : ℕ} (M : matrix (fin m) (fin n) R) (A : matrix (fin m) (fin m) R) (h : is_unit A) : r R m n M (A ⬝ M) :=
 begin
   use [A⁻¹, 1],
@@ -285,14 +277,6 @@ begin
 end
 
 end matrix_equiv_rel
-
-
-
-
-
-
-
-
 
 
 
@@ -556,9 +540,6 @@ end
 -- https://leanprover-community.github.io/extras/well_founded_recursion.html
 
 
-
-
-
 -- inductive steps between n and (n + 1)
 -- __3__ 
 lemma equiv_simple_block_diag {R : Type*} [euclidean_domain R] {n : ℕ} (h : n > 0) (A : matrix (fin (n + 1)) (fin (n + 1)) R) : ∃ (B : matrix (fin n) (fin n) R) (b : R), matrix_equiv_rel.r R (n + 1) (n + 1) A (simple_block_diag b B) :=
@@ -571,8 +552,6 @@ end
 
 -- __4__ 
 lemma temp2 {R : Type*} [euclidean_domain R] [decidable_eq R] {n : ℕ} (hn : n > 0) (A : matrix (fin n) (fin n) R) (B : matrix (fin n) (fin n) R) (hB : snf B) (hA : matrix_equiv_rel.r R n n A B) {a : R} : ∃ (C : matrix (fin (n + 1)) (fin (n + 1)) R), matrix_equiv_rel.r R (n + 1) (n + 1) (simple_block_diag a A) C ∧ snf C := sorry
-
-
 
 
 -- Show that any zero matrix is in smith normal form
