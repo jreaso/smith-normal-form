@@ -1,0 +1,8 @@
+[package]
+name = "smith-normal-form"
+version = "0.1"
+lean_version = "leanprover-community/lean:3.46.0"
+path = "src"
+
+[dependencies]
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "be87e2504a0c96de2efb63d3f80098edf5f00085"}
